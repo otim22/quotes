@@ -1,18 +1,34 @@
 <template>
   <div id="container">
-    
+    <app-new-quote @quoteAdded="newQuote($event)"></app-new-quote>
+    <app-quote-grid :quotes="quotes"></app-quote-grid>
   </div>
 </template>
 
 <script>
-export default {
-  data: function() {
-    return {
-      quotes: ['First quote to display'],
-      maxQuote: 10
+
+  import QuoteGrid from './components/QuoteGrid.vue';
+  import NewQuote from './components/NewQuote.vue';
+
+  export default {
+    data: function() {
+      return {
+        quotes: [
+          'First quote to display'
+        ],
+        maxQuote: 10
+      }
+    },
+    methods: {
+      newQuote(quote) {
+        this.quotes.push(quote);
+      }
+    },
+    components: {
+      appQuoteGrid: QuoteGrid,
+      appNewQuote: NewQuote
     }
   }
-}
 </script>
 
 <style>
